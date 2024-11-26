@@ -6,6 +6,68 @@
     <title>Document</title>
 </head>
 <body>
-    testing  all adfafadadfafsa
+    <form action="">
+        <input id="textBox" type="text">
+        <button id="btn">add</button>
+        <ul id="list">
+
+        </ul>
+    </form>
+    
+    <script>
+        const btn = document.getElementById("btn");
+        btn.addEventListener("click", (event) => {
+            event.preventDefault(); 
+            
+            // get textbox  and ul box
+            const textBox = document.getElementById("textBox");
+            const list = document.getElementById("list");
+    
+            // get text from the textbox
+            const text = textBox.value.trim();
+    
+            // text not empty
+            if (text) {
+                // create <li>
+                const li = document.createElement("li");
+                li.style.listStyleType = "none"
+                // create checkbox
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+    
+                // create deleteBtn
+                const delBtn = document.createElement("button");
+                delBtn.textContent = "X";
+                delBtn.style.marginLeft = "60px";
+                delBtn.style.backgroundColor = "red";
+                delBtn.style.color = "white";
+                delBtn.style.border = "none";
+                delBtn.style.borderRadius = "5px";
+                delBtn.style.cursor = "pointer";
+    
+                // bind event to delBtn
+                delBtn.addEventListener("click", () => {
+                    li.remove(); // 删除该列表项
+                });
+    
+
+                li.prepend(checkbox);
+    
+                // create text node and append to <li>
+                const textNode = document.createTextNode(text);
+                li.appendChild(textNode);
+    
+                
+                li.appendChild(delBtn);
+    
+                // append <li> to <ul>
+                list.appendChild(li);
+    
+                // empty val in textbox
+                textBox.value = "";
+            }
+        });
+    </script>
+    
 </body>
 </html>
